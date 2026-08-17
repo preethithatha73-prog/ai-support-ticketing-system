@@ -1,0 +1,2 @@
+const User=require('../models/User');const Ticket=require('../models/Ticket');
+exports.assign=async()=>{const agents=await User.find({role:'agent',status:'active'});if(!agents.length)return null;const counts=await Promise.all(agents.map(async a=>({a,n:await Ticket.countDocuments({assignedAgent:a._id,status:{$nin:['Resolved','Closed']}})})));counts.sort((x,y)=>x.n-y.n);return counts[0].a._id};

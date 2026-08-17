@@ -1,0 +1,2 @@
+const mongoose=require('mongoose');
+module.exports=mongoose.model('Feedback',new mongoose.Schema({ticket:{type:mongoose.Schema.Types.ObjectId,ref:'Ticket',unique:true},customer:{type:mongoose.Schema.Types.ObjectId,ref:'User'},rating:{type:Number,min:1,max:5},comment:String},{timestamps:true}));

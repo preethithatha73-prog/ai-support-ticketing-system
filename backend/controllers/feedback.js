@@ -1,0 +1,1 @@
+const Feedback=require('../models/Feedback');exports.create=async(req,res,next)=>{try{res.status(201).json(await Feedback.create({ticket:req.params.id,customer:req.user.id,rating:req.body.rating,comment:req.body.comment}))}catch(e){next(e)}};

@@ -1,0 +1,1 @@
+const r=require('express').Router(),c=require('../controllers/tickets'),{auth,roles}=require('../middleware/auth');r.use(auth);r.get('/',c.list);r.post('/',roles('customer','admin'),c.create);r.get('/:id',c.get);r.put('/:id',roles('agent','admin'),c.update);r.post('/:id/messages',c.message);module.exports=r;

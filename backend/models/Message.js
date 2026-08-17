@@ -1,0 +1,2 @@
+const mongoose=require('mongoose');
+module.exports=mongoose.model('Message',new mongoose.Schema({ticket:{type:mongoose.Schema.Types.ObjectId,ref:'Ticket'},sender:{type:mongoose.Schema.Types.ObjectId,ref:'User'},message:String},{timestamps:true}));

@@ -1,0 +1,1 @@
+const User=require('../models/User');exports.list=async(req,res,next)=>{try{res.json(await User.find().select('-password').sort('-createdAt'))}catch(e){next(e)}};

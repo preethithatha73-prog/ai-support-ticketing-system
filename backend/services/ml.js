@@ -1,0 +1,3 @@
+exports.classify=async(subject,description)=>{
+try{const r=await fetch(`${process.env.ML_SERVICE_URL}/predict`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({subject,description})});if(!r.ok)throw Error();return await r.json()}
+catch(e){const s=(subject+' '+description).toLowerCase();let category='General';if(/login|password|sign in|account/.test(s))category='Login';else if(/bill|payment|invoice|charge/.test(s))category='Billing';else if(/refund|return/.test(s))category='Refund';else if(/ship|delivery|order/.test(s))category='Shipping';else if(/bug|error|crash|technical/.test(s))category='Technical Issue';return {category,priority:/urgent|critical|down|security/.test(s)?'Critical':'Medium',confidence:.65}}};

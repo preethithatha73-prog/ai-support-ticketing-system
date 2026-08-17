@@ -1,0 +1,5 @@
+import os,joblib
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+data=[('cannot login password reset','Login'),('account sign in fails','Login'),('invoice payment charge','Billing'),('credit card charged twice','Billing'),('website crashes error bug','Technical Issue'),('app has technical error','Technical Issue'),('where is my order delivery','Shipping'),('package delivery delayed','Shipping'),('please refund my purchase','Refund'),('I want to return product','Refund'),('product question','Product'),('general question','General')]
+x=[a for a,b in data];y=[b for a,b in data];v=TfidfVectorizer(ngram_range=(1,2));X=v.fit_transform(x);m=LogisticRegression(max_iter=1000).fit(X,y);os.makedirs('model',exist_ok=True);joblib.dump((v,m),'model/category.joblib')

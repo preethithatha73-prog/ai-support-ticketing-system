@@ -1,0 +1,1 @@
+const SLA=require('../models/SLAConfig');exports.list=async(req,res,next)=>{try{res.json(await SLA.find())}catch(e){next(e)}};exports.update=async(req,res,next)=>{try{res.json(await SLA.findOneAndUpdate({priority:req.body.priority},{resolutionHours:req.body.resolutionHours},{upsert:true,new:true}))}catch(e){next(e)}};
